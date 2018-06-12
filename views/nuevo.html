@@ -1,0 +1,70 @@
+{% extends 'template.html' %}
+
+{% block title %}
+  Nuevo
+{% endblock %}
+{% block nombre %}
+  {{ nombre }}
+{% endblock %}
+{% block datos %}
+  {{ nombre }}
+  <br>
+  CUIL: {{cuil}}
+{% endblock %}
+
+
+{% block content %}
+  <div class="box box-info">
+    
+    <div class="box-header with-border">
+      <h3 class="box-title">{{ titulo }}</h3>
+    </div>
+        
+
+    <form class="form-horizontal" method="post" action="index.php?agregar">      
+      <div class="box-body">
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">Dirección</label>
+				  <div class="col-sm-10">
+            <input type="text" class="form-control" id="direccion" placeholder="Dirección" name="direccion" oninput="comprobar();">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword3" class="col-sm-2 control-label">Fecha de alta: </label>
+          <div class="col-sm-10">
+            <label class="col-sm-1 control-label">{{ fecha['year'] }}-{{ fecha['mon'] }}-{{ fecha['mday'] }}</label>
+            <input style="display:none" type="text" class="form-control" name="fecha" id="fecha" value="{{ fecha['year'] }}-{{ fecha['mon'] }}-{{ fecha['mday'] }}"/>
+            <label class="col-sm-2 control-label">Tipo: </label>
+            <select class="form-control select2" style="width: 25%;" id="tipo" name="tipo" >
+              <option {{ select0 }} value=0>Sucursal</option>
+              <option value=1 {{ activar }} {{ select1 }}>Central</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="box-footer">
+        <a href="index.php?sucursales" class="btn btn-default">Cancelar</a>
+        <button type="submit" class="btn btn-info pull-right" id="agregar" disabled="true">Agregar</button>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+  function comprobar(){
+    if($('#direccion').val() != ""){
+      $("#agregar").prop( "disabled", false );
+    }   
+    else{
+      $("#agregar").prop( "disabled", true );
+    }
+  };
+
+</script>
+
+{% endblock %}

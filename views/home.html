@@ -1,0 +1,23 @@
+{% extends 'template.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block nombre %}
+    {{ nombre }}
+{% endblock %}
+{% block datos %}
+    NOMBRE: {{ nombre }}
+    <br>
+    CUIL: {{cuil}}
+{% endblock %}
+
+{% block content %}
+	<br>
+	<div class="col-md-8">
+		<div class="callout callout-info">
+			<h4>Bienvenido al sistemas de rentas</h4>
+			<p>Nombre completo: {{nombre}}<br>
+			CUIL: {{cuil}}</p>
+		</div>
+	</div>
+{% endblock %}

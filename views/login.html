@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rentas | Login</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../resources/dist/css/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="../resources/plugins/iCheck/square/blue.css">
+  </head>
+
+  <body class="hold-transition login-page">
+
+    <div class="login-box">
+      <!-- LOGO -->
+      <div class="login-logo">
+        <img src="../views/image/login.png"  class="img-fluid" alt="Responsive image" style="margin-left:auto; margin-right: auto">
+      </div>
+      <div class="alert alert-danger alert-dismissible" style="{{ display }}">
+        <label>{{ error }}</label>
+      </div>
+      <div class="login-box-body">
+        <p class="login-box-msg">Inicia sesión</p>
+
+      <!-- FORMULARIO -->
+      <form action="../controllers/index.php?ingresar" method="post">
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" placeholder="Usuario" name="usuario" id="usuario" oninput="comprobar();">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="Contraseña" name="pass" id="pass" oninput="comprobar();">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-xs-8">   
+          </div>
+          <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat" id="acceder" disabled="true">Acceder</button>
+          </div>
+        </div>
+      </form>   
+    </div>
+  </body>
+</html>
+
+<script src="../resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+<script>
+  function comprobar(){
+    if($('#usuario').val() != "" && $('#pass').val() != ""){
+      $("#acceder").prop( "disabled", false );
+    }   
+    else{
+      $("#acceder").prop( "disabled", true );
+    }
+  };
+
+</script>

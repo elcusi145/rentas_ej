@@ -1,0 +1,90 @@
+{% extends 'template.html' %}
+
+{% block title %}
+  Sucursales
+{% endblock %}
+{% block nombre %}
+  {{ nombre }}
+{% endblock %}
+{% block datos %}
+  {{ nombre }}
+  <br>
+  CUIL: {{cuil}}
+{% endblock %}
+
+
+{% block content %}
+	<div class="box-body">
+    <table id="tabla" class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Domicilio</th>
+          <th>Fecha de alta</th>
+          <th>Tipo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for sucursal in sucursales %}
+          <tr>
+            <td>{{ sucursal.domicilio }}</td>
+            <td>{{ sucursal.alta }}</td>
+            
+            {% if sucursal.tipo == 1 %}
+              <td>Central</td>
+            {% else %}
+              <td>Sucursal</td>
+            {% endif %}
+            
+            
+            <td>
+              <form action="index.php?modificar" id="modificar{{ sucursal.id_sucursal }}" style="display:none" method="POST">
+                <input style="display:none" type="text" class="form-control" name="sucursal" id="sucursal" value="{{ sucursal.id_sucursal }}"/>
+              </form>
+
+              <form action="index.php?eliminar" id="eliminar{{ sucursal.id_sucursal }}" style="display:none" method="POST">
+                <input style="display:none" type="text" class="form-control" name="sucursal" id="sucursal" value="{{ sucursal.id_sucursal }}"/>
+              </form>
+
+              <button class="btn btn-success" onclick="modificar({{ sucursal.id_sucursal }})" >Modificar</button>
+              <button class="btn btn-danger" onclick="comprobar({{ sucursal.id_sucursal }})" >Eliminar</button>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  <script>
+    $('#tabla').DataTable({
+      "language": {
+      "lengthMenu": "Listado de sucursales",
+      "search": "Buscar",
+      "zeroRecords": "No se encontraron sucursales",
+      "info": "Mostrando página _PAGE_ de _PAGES_",
+      "infoEmpty": "No hay resultados",
+      "infoFiltered": "(de un total de MAX total registros)",
+      "paginate": {
+        "previous": "Anterior",
+        "next": "Siguiente"
+      }
+    },
+      "columnDefs": [
+        { "width": "65%", "targets": 0 }]
+    });
+
+    function comprobar(i){
+      var r = confirm("¿Quiere elimar la sucursal?");
+		  if (r == true) {
+		    $('#eliminar'+i).submit();
+		  }
+    }
+
+    function modificar(i){
+      $('#modificar'+i).submit();
+    }
+  </script>
+{% endblock %}
